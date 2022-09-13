@@ -36,7 +36,7 @@ _Needs to be deployed on seperate machine to be able to notify in case if valida
 ```
 wget -O install_monitoring.sh https://raw.githubusercontent.com/kj89/cosmos_node_monitoring/master/install_monitoring.sh && chmod +x install_monitoring.sh && ./install_monitoring.sh
 ```
-### 2.2 Setup Telegram BOT and configure into monitoring tool
+### 2.2 Setup Telegram BOT and add into monitoring tool
 
 | KEY | VALUE |
 |---------------|-------------|
@@ -105,5 +105,38 @@ Input grafana.com dashboard id `15991` and press **"Load"**
 Select `Prometheus` data source and press **"Import"**
 
 ![image](https://user-images.githubusercontent.com/50621007/160623287-0340acf8-2d30-47e7-8a3a-56295bea8a15.png)
+
+Checking Dashboard content
+![image](https://user-images.githubusercontent.com/91453629/189956896-26ef7bfa-2463-4e0f-beff-ddaf626a0a78.png)
+
+## 4. Configure auto alerting to email
+### 4.1 Setup sender email
+Note: After 30 May 2022 you can't login with username and password alone to Gmail. Less secure app access is not available anymore unless you have Google Workspace or Google Cloud Identity. So you need to make a password of specific app for **sender email**. For receiver email, just create a newly email normally
+
+- [Enable 2FA](https://myaccount.google.com/signinoptions/two-step-verification/enroll-welcome)   
+![image](https://user-images.githubusercontent.com/91453629/189958581-04d9d6af-3fa3-4779-bc3d-f8a040669f06.png)
+
+
+- [Create an app-specific password](https://myaccount.google.com/apppasswords)   
+Select `Select app` => **Mail**, `Select device` => **Other**. Type customized name and click **Generate**. Google will create a specific password with 16 words used to remote login gmail
+![image](https://user-images.githubusercontent.com/91453629/189959360-48256e6b-3413-4611-a805-4b05879e02a1.png)
+
+### 4.2 Configure email forwarding
+
+```
+sender=SENDERNAME@gmail.com
+receiver=RECEIVER_NAME@gmail.com
+password=ttdmgdpwlzhombbq
+cp /root/cosmos_node_monitoring/prometheus/alert_manager/alertmanager.yml /root/cosmos_node_monitoring/prometheus/alert_manager/alertmanager.yml-bak
+echo "  email_configs:
+  - to: '$receiver'
+    from: '$sender'
+    smarthost: smtp.gmail.com:587
+    auth_username: '$sender'
+    auth_identity: '$sender'
+    auth_password: '$password'" >> /root/cosmos_node_monitoring/prometheus/alert_manager/alertmanager.yml
+```
+Red remarked item is added content
+![image](https://user-images.githubusercontent.com/91453629/189962209-7d354693-2836-4b67-bda9-3537ced7081f.png)
 
 
