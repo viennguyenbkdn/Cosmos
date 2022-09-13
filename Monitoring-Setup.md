@@ -1,4 +1,4 @@
-// Guide is used to setup monitoring and telegram bot alerting on Cosmos chain using docker  
+// Guide is used to setup monitoring and telegram bot alerting, email forwarding on Cosmos chain using docker  
 // Credit to KJ89 and Solarlab team  
 // Reference: - [Cosmos Node Monitoring](https://github.com/kj89/cosmos_node_monitoring)
 
@@ -139,4 +139,34 @@ echo "  email_configs:
 Red remarked item is added content
 ![image](https://user-images.githubusercontent.com/91453629/189962209-7d354693-2836-4b67-bda9-3537ced7081f.png)
 
+Restart docker 
+```
+cd $HOME/cosmos_node_monitoring
+sudo docker compose down
+sudo docker compose up -d
+```
+
+## 5. Testing
+
+- For simple test you can stop `node-exporter` service for 5 minutes. It should trigger alert
+```
+sudo systemctl stop node_exporter
+```
+
+- You will see message from bot firing  
+![image](https://user-images.githubusercontent.com/91453629/189963025-73e6baba-6d36-4121-849c-b0d879e5a19a.png)
+
+- Now you can start `node-exporter` service back
+```
+sudo systemctl start node_exporter
+```
+
+- You will get confirmation from bot that issue is resolved  
+![image](https://user-images.githubusercontent.com/91453629/189963085-b548272e-b9bf-4845-b2d6-0d0afc6370f8.png)
+
+- Check your sender gmail in `Sent` Box, you can see the sended emails  
+![image](https://user-images.githubusercontent.com/91453629/189964036-d95927e3-53d9-45cd-8b98-34bd0b49fa39.png)
+
+- Check your receiver gmail, you can see the warning received emails   
+![image](https://user-images.githubusercontent.com/91453629/189964253-4a86874e-1bec-4e35-85d2-227323afa113.png)
 
