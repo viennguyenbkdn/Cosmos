@@ -63,6 +63,60 @@ $instance tx gov vote $PROPOSAL_ID yes --chain-id=$CHAIN_ID --from=$WALLET -y
 
 ### 9. Your opinion!
 _Your task is to create a proposal that can reach a quorum and be open to a vote_
+ - Quorum percentage must be at least 40% voting power in 2 weeks
+### 9.1 Below is example for changing validator quantity. 
+* Firstly create a json file of parameter change proposal: `vim $HOME/parameter_change.json` 
+```
+{
+  "title": "Staking Param Change",
+  "description": "Update max validators",
+  "changes": [
+    {
+      "subspace": "staking",
+      "key": "MaxValidators",
+      "value": 105
+    }
+  ],
+  "deposit": "2000000000000000000aISLM"
+}
+```
+ 
+* Submit proposal for changing validator number
+```
+$instance tx gov submit-proposal param-change $HOME/parameter_change.json --from=$WALLET --chain-id=$CHAIN_ID -y
+```
+
+### 9.2 Below is example for changing paramter. 
+- [Link to TXH](https://haqq.explorers.guru/transaction/921E4418B72254EBFE114799D2945E33F8EA444205AD18FDF5A3588DBD45577B)
+- [Link to proposal](https://haqq.explorers.guru/proposal/16)
+* Firstly create a json file of parameter change proposal: `vim $HOME/parameter_change.json` 
+```
+{
+  "title": "Parameter change: minimum deposit amount.",
+  "description": "Decrease proposal deposit amount to 10 ISLM.",
+  "changes": [
+    {
+      "subspace":"gov"
+      "key":"depositparams"
+      "value":"{
+        "min_deposit": [
+            {
+                "denom": "aISLM",
+                "amount": "10000000000000000000"
+            }
+        ],
+        "max_deposit_period": "172800000000000"
+      }"
+    }
+  ],
+  "deposit": "2000000000000000000aISLM"
+}
+```
+ 
+* Submit proposal for changing minimum deposit
+```
+$instance tx gov submit-proposal param-change $HOME/parameter_change.json --from=$WALLET --chain-id=$CHAIN_ID -y
+```
 
 ### 10. Test of strength!
 _Try to disable the validator node that is also in the active set with you._
