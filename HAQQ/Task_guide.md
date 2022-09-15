@@ -51,7 +51,7 @@ _Your task is not to go to jail the entire time you are in the active set._
 To confirm the completion of this task - just confirm it by writing "Jail - this is not about me"
 
 ### 7. False alarm!
-_To complete this task, you must develop a protection and notification system for your validator._
+_To complete this task, you must develop a protection and notification system for your validator._  
 You can build monitoring system (Grafana & Prometheus), alerting system via TeleBot, Discord Bot or gmail. Build HA/Server cluster
 
 ### 8. Can you hear me?
