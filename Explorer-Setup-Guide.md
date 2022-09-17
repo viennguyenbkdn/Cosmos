@@ -92,7 +92,7 @@ yarn && yarn build
 - Copy your web data to path of Root webserver
 ```
 mkdir /var/www/YOUR_NAME
-cp /root/explorer/disk/* /var/www/YOUR_NAME
+cp /root/explorer/dist/* /var/www/YOUR_NAME
 ```
 - Check and edit the file `/etc/nginx/sites-available/default`
 ![image](https://user-images.githubusercontent.com/91453629/190851426-fc774f5a-f262-4b05-8e1b-e1aa45db2eaf.png)
