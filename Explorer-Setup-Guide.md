@@ -63,6 +63,10 @@ server {
 ![image](https://user-images.githubusercontent.com/91453629/190850453-7794ca44-9830-4c1f-902c-8e33c2cdee2f.png)
 ![image](https://user-images.githubusercontent.com/91453629/190850419-859780c3-dd7b-403e-ade0-27ab7cf30111.png)
 
+- Open `/root/explorer/src/navigation/vertical/index.js` to edit Twitter, Discord...  
+![image](https://user-images.githubusercontent.com/91453629/191354013-5058783b-65e8-4011-af7b-5fde3862c742.png)
+![image](https://user-images.githubusercontent.com/91453629/191354174-488acd87-565b-4c79-8c1c-00ea3e50c241.png)
+
 - Edit json file of your chain in `/root/explorer/src/chains`, fill in your own RPC and API if need (Step 2.2)
 
 ### 2.2 Edit config data of your chain
