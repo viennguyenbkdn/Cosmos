@@ -98,7 +98,7 @@ $instance tx gov submit-proposal param-change $HOME/parameter_change.json --from
     {
       "subspace":"gov"
       "key":"depositparams"
-      "value":"{
+      "value":{
         "min_deposit": [
             {
                 "denom": "aISLM",
@@ -106,7 +106,7 @@ $instance tx gov submit-proposal param-change $HOME/parameter_change.json --from
             }
         ],
         "max_deposit_period": "172800000000000"
-      }"
+      }
     }
   ],
   "deposit": "2000000000000000000aISLM"
