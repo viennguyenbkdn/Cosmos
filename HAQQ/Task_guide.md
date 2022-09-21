@@ -63,7 +63,7 @@ $instance tx gov vote $PROPOSAL_ID yes --chain-id=$CHAIN_ID --from=$WALLET -y
 
 ### 9. Your opinion!
 _Your task is to create a proposal that can reach a quorum and be open to a vote_
- - Quorum percentage must be at least 40% voting power in 2 weeks
+ - Quorum percentage must be at least 40% voting power in quorum period , 3 days for HAQQ
 ### 9.1 Below is example for changing validator quantity. 
 * Firstly create a json file of parameter change proposal: `vim $HOME/parameter_change.json` 
 ```
@@ -116,6 +116,10 @@ $instance tx gov submit-proposal param-change $HOME/parameter_change.json --from
 * Submit proposal for changing minimum deposit
 ```
 $instance tx gov submit-proposal param-change $HOME/parameter_change.json --from=$WALLET --chain-id=$CHAIN_ID -y
+```
+### 9.3 Below is example for text proposal suggestion
+```
+$instance tx gov submit-proposal --type="Text" --title="YOUR BRIEFLY SUGGESTION" --description="YOU DESCRIBE ABOUT UR PROPOSAL" --deposit="2000000aISLM" --from $WALLET
 ```
 
 ### 10. Test of strength!
