@@ -140,7 +140,7 @@ _Find any inconsistency in our documents and offer to fix it._
 ### 14. Bug hunter!
 _Find bugs in the code on our GitHub and suggest fixes._
 
-### 15. 
+### 15. I'll give you the last one!
 _To complete this task, you need to redeliver tokens from your validator to any other validator! Do not confuse, it is from the validator and not from the wallet!_
 ```
 DST_VALOPER_ADDRESS=haqqvaloper1m9snuwx8g5geym778mpug09t8qegc5qnfxd46t
