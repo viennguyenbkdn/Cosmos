@@ -64,7 +64,7 @@ PROPOSAL_ID=2 #example
 $instance tx gov vote $PROPOSAL_ID yes --chain-id=$CHAIN_ID --from=$WALLET -y
 ```
 
-### 9. Your opinion!
+### 9. Your opinion! (Removed)
 _Your task is to create a proposal that can reach a quorum and be open to a vote_
  - Quorum percentage must be at least 40% voting power in quorum period , 3 days for HAQQ
 ### 9.1 Below is example for changing validator quantity. 
@@ -140,6 +140,12 @@ _Find any inconsistency in our documents and offer to fix it._
 ### 14. Bug hunter!
 _Find bugs in the code on our GitHub and suggest fixes._
 
+### 15. 
+_To complete this task, you need to redeliver tokens from your validator to any other validator! Do not confuse, it is from the validator and not from the wallet!_
+```
+DST_VALOPER_ADDRESS=haqqvaloper1m9snuwx8g5geym778mpug09t8qegc5qnfxd46t
+$instance tx staking redelegate $VALOPER_ADDRESS $DST_VALOPER_ADDRESS 10000000$denom --from=$WALLET --chain-id=$CHAIN_ID --gas=auto --gas-adjustment 1.4 -y
+```
 
 
 
