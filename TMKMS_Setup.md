@@ -95,8 +95,8 @@ systemctl stop haqqd && journalctl -u haqqd -f -o cat
 
 ![image](https://user-images.githubusercontent.com/91453629/192012024-8a8483ad-ef4a-47fe-a6dd-79bfcfac44dd.png)
 
-![image](https://user-images.githubusercontent.com/91453629/192012072-a381964e-2ef7-4eba-87d4-4609b8bcad7d.png)
+![image](https://user-images.githubusercontent.com/91453629/192043612-1daa067b-7810-4ba7-8dee-c608f073a7ca.png)
 
-![image](https://user-images.githubusercontent.com/91453629/192029480-3d9f96e5-1325-4f0a-9983-6760dadd3372.png)
+![image](https://user-images.githubusercontent.com/91453629/192043665-e96206f3-1956-4321-98f6-3b4361fc24f3.png)
 
 
