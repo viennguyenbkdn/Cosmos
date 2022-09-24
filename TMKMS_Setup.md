@@ -128,4 +128,26 @@ sudo systemctl restart haqqd && sudo journalctl -fu haqqd -o cat
 [[ $(haqqd q staking validator haqqvaloper1mc0kvscpucsndf948dnsrrpd954t9l4lfqevk6 -oj | jq -r .consensus_pubkey.key) = $(haqqd status | jq -r .ValidatorInfo.PubKey.value) ]] && echo "You win" || echo "You lose"
 ```
 
+### ROLLBACK procedure
+- Stop your validator node
+```
+sudo systemctl stop haqqd
+```
+
+- Stop TMKMS on KMS node
+```
+sudo systemctl stop tmkms
+```
+
+- Copy back original file `priv_validator_key.json` (you saved it offline before) to validator node.
+- Rollback config data of your chain
+```
+sed -i -E "s|priv_validator_laddr = \"tcp\:\/\/0\.0\.0\.0\:688\"|priv_validator_laddr = \"\"|" $HOME/.haqqd/config/config.toml
+sed -i.bak -E "s|# priv_validator_key_file|priv_validator_key_file|" $HOME/.haqqd/config/config.toml
+sed -i.bak -E "s|# priv_validator_state_file|priv_validator_state_file|" $HOME/.haqqd/config/config.toml
+```
+- When you run TMKMS, KMS node signed block and saved state of signed block in the file `/root/tmkms/config/state/priv_validator_state.json`, NOT your validator node. Hence the file `$HOME/.haqqd/data/priv_validator_state.json` on validator node is empty
+![image](https://user-images.githubusercontent.com/91453629/192078895-77180c4e-1944-4be7-ae48-3e1f5d6f251a.png)
+
+- If you start your validator node now that can cause a double sign on your node, because validator node still think that it does not sign previous blocks. It's better erase db data, then download a snapshot or do a statesync and restart your node
 
