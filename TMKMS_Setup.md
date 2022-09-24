@@ -91,7 +91,7 @@ sed -i.bak -E "s|^priv_validator_state_file|# priv_validator_state_file|" $HOME/
 systemctl stop haqqd && journalctl -u haqqd -f -o cat
 ```
 
-- Create systemd of TMKMS, start it, then KMS log will be as below
+- Create systemd of TMKMS, start it, then KMS log will be as below. You can see that consensus key of your validator node has been added to TMKMS (Tip: You can check `pub_key` in original file `priv_validator_key.json`)
 ```
 sudo tee /etc/systemd/system/tmkms.service > /dev/null <<EOF
 [Unit]
@@ -112,7 +112,7 @@ sudo systemctl daemon-reload
 sudo systemctl enable tmkms
 sudo systemctl restart tmkms && sudo journalctl -fu tmkms -o cat
 ```
-![image](https://user-images.githubusercontent.com/91453629/192044025-7bee014e-2a7a-4e2f-bfef-7a943094d1dc.png)
+![image](https://user-images.githubusercontent.com/91453629/192078229-35177f32-e818-43c6-81c6-ad28f427aa62.png)
 
 - Restart your validator node (below is example of haqqd chain)
 ```
