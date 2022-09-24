@@ -150,4 +150,3 @@ sed -i.bak -E "s|# priv_validator_state_file|priv_validator_state_file|" $HOME/.
 ![image](https://user-images.githubusercontent.com/91453629/192078895-77180c4e-1944-4be7-ae48-3e1f5d6f251a.png)
 
 - If you start your validator node now that can cause a double sign on your node, because validator node still think that it does not sign previous blocks. It's better erase db data, then download a snapshot or do a statesync and restart your node
-
