@@ -149,4 +149,4 @@ sed -i.bak -E "s|# priv_validator_state_file|priv_validator_state_file|" $HOME/.
 - When you run TMKMS, KMS node signed block and saved state of signed block in the file `/root/tmkms/config/state/priv_validator_state.json`, NOT your validator node. Hence the file `$HOME/.haqqd/data/priv_validator_state.json` on validator node is empty
 ![image](https://user-images.githubusercontent.com/91453629/192078895-77180c4e-1944-4be7-ae48-3e1f5d6f251a.png)
 
-- If you start your validator node now after rollback the file `priv_validator_key.json` that can cause a double sign on your node, because validator node still think that it did not sign previous blocks. It's better erase db data, then download a snapshot or do a statesync and restart your node
+- If you start your validator node now after rollback the file `priv_validator_key.json` that can cause a double sign on your node, because MAYBE validator node think that it did not sign previous blocks. It's better erase db data, then download a snapshot or do a statesync and restart your node
