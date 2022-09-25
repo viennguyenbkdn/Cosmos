@@ -9,22 +9,22 @@ wget -O install_exporters.sh https://raw.githubusercontent.com/viennguyenbkdn/co
 
 | KEY |VALUE |
 |---------------|-------------|
-| **bond_denom** | Denominated token name, for example, `usei` for sei testnet. You can find it in genesis file: `grep bond_denom /root/.sei/config/genesis.json`
-| **bench_prefix** | Prefix for chain addresses, for example, `sei` for sei testnet. You can find it in public addresses like this **sei**_valoper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete_ |
-| **rpc_port** | Your validator `rpc` port that is defined in `config.toml` file, use command `grep -m 1 "^laddr" /root/.sei/config/config.toml` |
-| **grpc_port** | Your validator `grpc` port that is defined in `app.toml` file, use command `grep -A 1 "gRPC server address" /root/.sei/config/app.toml` |
-| **promethus_port**| Your prometheus port is defined in `config.toml`, use command `grep prometheus_listen /root/.sei/config/config.toml`|
+| **bond_denom** | Denominated token name, for example, `aISLM` for HAQQ testnet. You can find it in genesis file: `grep bond_denom /root/.haqqd/config/genesis.json`
+| **bench_prefix** | Prefix for chain addresses, for example, `haqq` for HAQQ testnet. You can find it in public addresses like this **haqq**_valoper1zyyz4m9ytdf60fn9yaafx7uy7h463n7alv2ete_ |
+| **rpc_port** | Your validator `rpc` port that is defined in `config.toml` file, use command `grep -m 1 "^laddr" /root/.haqqd/config/config.toml` |
+| **grpc_port** | Your validator `grpc` port that is defined in `app.toml` file, use command `grep -A 1 "gRPC server address" /root/.haqqd/config/app.toml` |
+| **promethus_port**| Your prometheus port is defined in `config.toml`, use command `grep prometheus_listen /root/.haqqd/config/config.toml`|
 
 make sure following ports are open:
 - `9100` (node-exporter)
 - `9300` (cosmos-exporter)
 
-Enable prometheus and expose RPC, restart service after changing. we used Sei for example
+Enable prometheus and expose RPC, restart service after changing. we used HAQQ for example
 ```
 # enable prometheus
-sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.sei/config/config.toml
+sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.haqqd/config/config.toml
 # Expose RPC
-sed -i.bak -e 's|^laddr = \"tcp:\/\/.*:\([0-9].*\)57\"|laddr = \"tcp:\/\/0\.0\.0\.0:\157\"|' $HOME/.sei/config/config.toml
+sed -i.bak -e 's|^laddr = \"tcp:\/\/.*:\([0-9].*\)57\"|laddr = \"tcp:\/\/0\.0\.0\.0:\157\"|' $HOME/.haqqd/config/config.toml
 ```
 
 ## 2. Monitoring deployment on another machine
@@ -65,9 +65,9 @@ source $HOME/.bash_profile
 
 ```
 VALIDATOR_IP=YOUR_NODE_IP   #10.10.10.10
-VALIDATOR_ADDR=YOUR_VALIDATOR_ADDRESS  #seivaloper1j3pzhu2400f4ntv6kznlvramxv62w2d2hj7e4u 
-WALLET_ADDRESS=YOUR_WALLER_ADDRESS #sei1j3pzhu2400f4ntv6kznlvramxv62w2d2fa0h5v
-PROJECT_NAME=YOUR_PRJ_NAME #Cosmos_Sei
+VALIDATOR_ADDR=YOUR_VALIDATOR_ADDRESS  #haqqvaloper1yuyxpvufqrvquzvntt8g4wlkllwzz3ymn863l7 
+WALLET_ADDRESS=YOUR_WALLER_ADDRESS #haqq1mc0kvscpucsndf948dnsrrpd954t9l4l9z4zjm
+PROJECT_NAME=YOUR_PRJ_NAME #Cosmos_HAQQ
 
 $HOME/cosmos_node_monitoring/add_validator.sh $VALIDATOR_IP $VALIDATOR_ADDR $WALLET_ADDRESS $PROJECT_NAME
 ```
