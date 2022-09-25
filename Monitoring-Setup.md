@@ -1,4 +1,4 @@
-// Guide is used to setup monitoring and telegram bot alerting, email forwarding on Cosmos chain using docker  
+// Guide is used to setup monitoring by Grafana dashboard via Prometheus, also forwarding warning/error of your node to Telegram bot and your email
 // Credit to KJ89 and Solarlab team 
 
 ## 1. Install exporters on validator node
