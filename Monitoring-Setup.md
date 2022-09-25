@@ -4,7 +4,7 @@
 ## 1. Install exporters on validator node
 
 ```
-wget -O install_exporters.sh https://raw.githubusercontent.com/viennguyenbkdn/cosmos_node_monitoring/master/install_exporters.sh && chmod +x install_exporters.sh && ./install_exporters.sh
+wget -O install_exporters.sh https://raw.githubusercontent.com/viennguyenbkdn/cosmos_node_monitoring/monitor-haqq/install_exporters.sh && chmod +x install_exporters.sh && ./install_exporters.sh
 ```
 
 | KEY |VALUE |
@@ -33,7 +33,7 @@ _Needs to be deployed on seperate machine to be able to notify in case if valida
 
 ### 2.1 Install monitoring stack
 ```
-wget -O install_monitoring.sh https://raw.githubusercontent.com/viennguyenbkdn/cosmos_node_monitoring/master/install_monitoring.sh && chmod +x install_monitoring.sh && ./install_monitoring.sh
+wget -O install_monitoring.sh https://raw.githubusercontent.com/viennguyenbkdn/cosmos_node_monitoring/monitor-haqq/install_monitoring.sh && chmod +x install_monitoring.sh && ./install_monitoring.sh
 ```
 ### 2.2 Setup Telegram BOT and add into monitoring tool
 
