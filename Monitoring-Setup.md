@@ -75,7 +75,7 @@ PROJECT_NAME=YOUR_PRJ_NAME #Cosmos_HAQQ
 $HOME/cosmos_node_monitoring/add_validator.sh $VALIDATOR_IP $VALIDATOR_ADDR $WALLET_ADDRESS $PROJECT_NAME
 ```
 - Open the file `cosmos_node_monitoring/prometheus/prometheus.yml`, then edit `job_name`, $VALIDATOR_IP and prometheus port of your chain  
-![image](https://user-images.githubusercontent.com/91453629/192156188-08da535f-fc42-4edd-96b3-1c639f410b49.png)
+![image](https://user-images.githubusercontent.com/91453629/192157656-8644db3f-95cd-4db7-88e6-ad7882d4c919.png)
 
 - To add more validators just run command above with validator values. if you wanna modify after running script, edit the file `/root/cosmos_node_monitoring/prometheus/prometheus.yml`, then restart docker
 
@@ -96,7 +96,7 @@ Default ports are used to monitor (could be adjusted)
 ### 3.1 Open Grafana
 Open Grafana in your web browser, type your IP and port `9999`, default user/pass `àdmin/admin`
 
-![image](https://user-images.githubusercontent.com/50621007/160622455-09af4fbf-2efb-4afb-a8f8-57a2b247f705.png)
+![image](https://user-images.githubusercontent.com/91453629/192157223-f380d61a-3fe4-4568-b90b-996627bb86a2.png)
 
 ### 3.2 Import custom dashboard
 Press "+" icon on the left panel and then choose **"Import"**
@@ -112,7 +112,7 @@ Select `Prometheus` data source and press **"Import"**
 ![image](https://user-images.githubusercontent.com/50621007/160623287-0340acf8-2d30-47e7-8a3a-56295bea8a15.png)
 
 Checking Dashboard content
-![image](https://user-images.githubusercontent.com/91453629/189956896-26ef7bfa-2463-4e0f-beff-ddaf626a0a78.png)
+![image](https://user-images.githubusercontent.com/91453629/192157623-522a1f3d-d6b4-486c-a9e7-5f72806f7809.png)
 
 ## 4. Configure auto alerting to email
 ### 4.1 Setup sender email
@@ -159,7 +159,7 @@ sudo systemctl stop node_exporter
 ```
 
 - You will see message from bot firing  
-![image](https://user-images.githubusercontent.com/91453629/192156345-a7953a34-9542-450f-a009-46e913bc05d6.png)
+![image](https://user-images.githubusercontent.com/91453629/192157717-50584b0a-3834-489f-a378-609330e4e73c.png)
 
 - Now you can start `node-exporter` service back
 ```
@@ -167,12 +167,10 @@ sudo systemctl start node_exporter
 ```
 
 - You will get confirmation from bot that issue is resolved  
-![image](https://user-images.githubusercontent.com/91453629/192156399-b1f6bd3c-3385-4cd9-9175-f16fd2ebf8bb.png)
+![image](https://user-images.githubusercontent.com/91453629/192157735-a656712d-b65f-42ae-aa60-829410eaf38d.png)
 
 - Check your sender gmail in `Sent` Box, you can see the sended emails  
-![image](https://user-images.githubusercontent.com/91453629/192156480-23cf2c50-e9e3-431d-acf2-c8dfddac43ac.png)
+![image](https://user-images.githubusercontent.com/91453629/192157759-54d30c49-99df-48eb-811b-be75d4b7f618.png)
 
 - Check your receiver gmail, you can see the warning received emails   
-![image](https://user-images.githubusercontent.com/91453629/192156560-99e60119-eb7b-4b08-9b86-97f6774b8165.png)
-
-
+![image](https://user-images.githubusercontent.com/91453629/192157841-d7ab5b6b-78c8-4435-9660-20b95b7bc71d.png)
