@@ -1,5 +1,8 @@
-// Guide is used to setup monitoring by Grafana dashboard via Prometheus, also forwarding warning/error of your node to Telegram bot and your email
-// Credit to KJ89 and Solarlab team 
+## NOTES
+```diff
+- Guide is used to setup monitoring by Grafana dashboard via Prometheus, also forwarding warning/error of your node to Telegram bot and your email
+- Credit to KJ89 and Solarlab team 
+```
 
 ## 1. Install exporters on validator node
 
@@ -71,6 +74,9 @@ PROJECT_NAME=YOUR_PRJ_NAME #Cosmos_HAQQ
 
 $HOME/cosmos_node_monitoring/add_validator.sh $VALIDATOR_IP $VALIDATOR_ADDR $WALLET_ADDRESS $PROJECT_NAME
 ```
+- Open the file `cosmos_node_monitoring/prometheus/prometheus.yml`, then edit `job_name`, $VALIDATOR_IP and prometheus port of your chain
+![image](https://user-images.githubusercontent.com/91453629/192156188-08da535f-fc42-4edd-96b3-1c639f410b49.png)
+
 To add more validators just run command above with validator values. if you wanna modify after running script, edit the file `/root/cosmos_node_monitoring/prometheus/prometheus.yml`, then restart docker
 
 ### 2.4 Run docker compose
