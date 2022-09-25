@@ -68,16 +68,16 @@ source $HOME/.bash_profile
 
 ```
 VALIDATOR_IP=YOUR_NODE_IP   #10.10.10.10
-VALIDATOR_ADDR=YOUR_VALIDATOR_ADDRESS  #haqqvaloper1yuyxpvufqrvquzvntt8g4wlkllwzz3ymn863l7 
+VALIDATOR_ADDR=YOUR_VALIDATOR_ADDRESS  #haqqvaloper1mc0kvscpucsndf948dnsrrpd954t9l4lfqevk6 
 WALLET_ADDRESS=YOUR_WALLER_ADDRESS #haqq1mc0kvscpucsndf948dnsrrpd954t9l4l9z4zjm
 PROJECT_NAME=YOUR_PRJ_NAME #Cosmos_HAQQ
 
 $HOME/cosmos_node_monitoring/add_validator.sh $VALIDATOR_IP $VALIDATOR_ADDR $WALLET_ADDRESS $PROJECT_NAME
 ```
-- Open the file `cosmos_node_monitoring/prometheus/prometheus.yml`, then edit `job_name`, $VALIDATOR_IP and prometheus port of your chain
+- Open the file `cosmos_node_monitoring/prometheus/prometheus.yml`, then edit `job_name`, $VALIDATOR_IP and prometheus port of your chain  
 ![image](https://user-images.githubusercontent.com/91453629/192156188-08da535f-fc42-4edd-96b3-1c639f410b49.png)
 
-To add more validators just run command above with validator values. if you wanna modify after running script, edit the file `/root/cosmos_node_monitoring/prometheus/prometheus.yml`, then restart docker
+- To add more validators just run command above with validator values. if you wanna modify after running script, edit the file `/root/cosmos_node_monitoring/prometheus/prometheus.yml`, then restart docker
 
 ### 2.4 Run docker compose
 ```
@@ -159,7 +159,7 @@ sudo systemctl stop node_exporter
 ```
 
 - You will see message from bot firing  
-![image](https://user-images.githubusercontent.com/91453629/189963025-73e6baba-6d36-4121-849c-b0d879e5a19a.png)
+![image](https://user-images.githubusercontent.com/91453629/192156345-a7953a34-9542-450f-a009-46e913bc05d6.png)
 
 - Now you can start `node-exporter` service back
 ```
@@ -167,11 +167,12 @@ sudo systemctl start node_exporter
 ```
 
 - You will get confirmation from bot that issue is resolved  
-![image](https://user-images.githubusercontent.com/91453629/189963085-b548272e-b9bf-4845-b2d6-0d0afc6370f8.png)
+![image](https://user-images.githubusercontent.com/91453629/192156399-b1f6bd3c-3385-4cd9-9175-f16fd2ebf8bb.png)
 
 - Check your sender gmail in `Sent` Box, you can see the sended emails  
-![image](https://user-images.githubusercontent.com/91453629/189964036-d95927e3-53d9-45cd-8b98-34bd0b49fa39.png)
+![image](https://user-images.githubusercontent.com/91453629/192156480-23cf2c50-e9e3-431d-acf2-c8dfddac43ac.png)
 
 - Check your receiver gmail, you can see the warning received emails   
-![image](https://user-images.githubusercontent.com/91453629/189964253-4a86874e-1bec-4e35-85d2-227323afa113.png)
+![image](https://user-images.githubusercontent.com/91453629/192156560-99e60119-eb7b-4b08-9b86-97f6774b8165.png)
+
 
