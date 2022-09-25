@@ -49,7 +49,7 @@ Create new tele bot and bot ID, then start
 ![image](https://user-images.githubusercontent.com/91453629/189948098-abdd25fd-42cb-45e2-988d-8925565e6e31.png)
 
 Create new API token, then start    
-![image](https://user-images.githubusercontent.com/91453629/189949323-50cbfde7-8ef0-4d95-b6a2-7cf89a7182f8.png)
+![image](https://user-images.githubusercontent.com/91453629/192158093-34d08ac9-2eaa-41ad-92ab-6479cbbfbdd2.png)
 
 Add bot ID and bot API token into config file
 ```
