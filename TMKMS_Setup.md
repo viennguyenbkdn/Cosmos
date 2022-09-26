@@ -1,3 +1,13 @@
+## PREREQUISTE
+- As we know that, validator node play a important role in Cosmos network. Validator consensus private key is stored in plain text format in validator node and easy to be compromised if someone takes control of validator node.
+- In this guide, i will guide how to setup Tendermint Key Management Service (called TMKMS) in below scenario
+  + There are 2 different servers which connect via Wireguard VPN, below is detail for setup Wireguard VPN between 2 server on Ubuntu
+    - [Wireguard setup guide on Ubuntu 20.04](https://www.digitalocean.com/community/tutorials/how-to-set-up-wireguard-on-ubuntu-20-04)
+  + One server will be installed TMKMS to encrypt validator consensus key and sign block remotely.
+  + The other server will communicate TMKMS server, but not sign block
+  + There is no validator consensus key in plain text format on both server, so no need to worry validator related compromised issue
+
+## TMKMS NODE SETUP PART
 ### Install the following dependencies
 ```
 # RUST
@@ -79,19 +89,7 @@ protocol_version = "v0.34"
 reconnect = true
 ```
 
-- Edit configuration data of your chain on validator node
-```
-sed -i -E "s|^priv_validator_laddr .*|priv_validator_laddr = \"tcp\:\/\/0\.0\.0\.0\:688\"|" $HOME/.haqqd/config/config.toml
-sed -i.bak -E "s|^priv_validator_key_file|# priv_validator_key_file|" $HOME/.haqqd/config/config.toml
-sed -i.bak -E "s|^priv_validator_state_file|# priv_validator_state_file|" $HOME/.haqqd/config/config.toml
-```
-
-- Stop your validator node
-```
-systemctl stop haqqd && journalctl -u haqqd -f -o cat
-```
-
-- Create systemd of TMKMS, start it, then KMS log will be as below. You can see that consensus key of your validator node has been added to TMKMS (Tip: You can check `pub_key` in original file `priv_validator_key.json`)
+- Create systemd of TMKMS.
 ```
 sudo tee /etc/systemd/system/tmkms.service > /dev/null <<EOF
 [Unit]
@@ -107,7 +105,24 @@ LimitNOFILE=65535
 [Install]
 WantedBy=multi-user.target
 EOF
+```
 
+## VALIDATOR NODE SETUP PART
+- Edit configuration data of your chain on validator node
+```
+sed -i -E "s|^priv_validator_laddr .*|priv_validator_laddr = \"tcp\:\/\/0\.0\.0\.0\:688\"|" $HOME/.haqqd/config/config.toml
+sed -i.bak -E "s|^priv_validator_key_file|# priv_validator_key_file|" $HOME/.haqqd/config/config.toml
+sed -i.bak -E "s|^priv_validator_state_file|# priv_validator_state_file|" $HOME/.haqqd/config/config.toml
+```
+
+## START PROCESS
+- Stop your validator node
+```
+systemctl stop haqqd && journalctl -u haqqd -f -o cat
+```
+
+- Start TMKMS process on TMKMS node, then KMS log will be as below. You can see that consensus key of your validator node has been added to TMKMS (Tip: You can check `pub_key` in original file `priv_validator_key.json`)
+```
 sudo systemctl daemon-reload
 sudo systemctl enable tmkms
 sudo systemctl restart tmkms && sudo journalctl -fu tmkms -o cat
@@ -128,7 +143,7 @@ sudo systemctl restart haqqd && sudo journalctl -fu haqqd -o cat
 [[ $(haqqd q staking validator haqqvaloper1mc0kvscpucsndf948dnsrrpd954t9l4lfqevk6 -oj | jq -r .consensus_pubkey.key) = $(haqqd status | jq -r .ValidatorInfo.PubKey.value) ]] && echo "You win" || echo "You lose"
 ```
 
-### ROLLBACK procedure
+## ROLLBACK procedure
 - Stop your validator node
 ```
 sudo systemctl stop haqqd
