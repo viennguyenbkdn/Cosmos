@@ -46,7 +46,7 @@ _Decorate your validator (Add an image, add a description, and whatever you see 
 - Add the above info to your validator
 ```
 KEYBASE_ID=<Copy your ID from keybase.io>
-$instance tx staking edit-validator --moniker $VALOPER --identity=$KEYBASE_ID --details="Type anything u want" --chain-id=$CHAIN_ID --from=$WALLET --gas=auto --gas-adjustment 1.4 -y
+$instance tx staking edit-validator --new-moniker $VALOPER --identity=$KEYBASE_ID --details="Type anything u want" --chain-id=$CHAIN_ID --from=$WALLET --gas=auto --gas-adjustment 1.4 -y
 ```
 
 ### 6. Law-abiding validator!
