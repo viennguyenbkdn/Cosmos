@@ -23,7 +23,7 @@ $instance tx distribution withdraw-all-rewards --from=$WALLET --chain-id=$CHAIN_
 # Withdraw rewards with commision from your validator
 $instance tx distribution withdraw-rewards $VALOPER_ADDRESS --from=$WALLET --commission --chain-id=$CHAIN_ID --gas=auto --gas-adjustment 1.4 -y
 
-# Withdraw rewards with commision from another delegated validator
+# Withdraw rewards from another delegated validator
 $instance tx distribution withdraw-rewards <DEL_VALOPER_ADDRESS> --from=$WALLET --chain-id=$CHAIN_ID --gas=auto --gas-adjustment 1.4 -y
 ```
 
