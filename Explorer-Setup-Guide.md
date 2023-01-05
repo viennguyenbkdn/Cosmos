@@ -68,7 +68,7 @@ server {
 ![image](https://user-images.githubusercontent.com/91453629/191354013-5058783b-65e8-4011-af7b-5fde3862c742.png)
 ![image](https://user-images.githubusercontent.com/91453629/191354174-488acd87-565b-4c79-8c1c-00ea3e50c241.png)
 
-- Edit json file of your chain in `/root/explorer/src/chains`, fill in your own RPC and API if need (Step 2.2)
+- Edit json file of your chain in `/root/explorer/src/chains`, fill in your own RPC and API if need (Step 2.2). Check the file `go.mod` in repo data then correct `sdk-version` of corresponding chain in json file also
 
 ### 2.2 Edit config data of your chain
 * Below is example for HAQQ chain
