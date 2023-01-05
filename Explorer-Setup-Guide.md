@@ -57,6 +57,7 @@ server {
 ![image](https://user-images.githubusercontent.com/91453629/190849926-713fc134-c569-4c0d-8097-95e47bb399b8.png)
 
 - Create your logo filenames `logo.svg` and `logo.png`, then upload to path `/root/explorer/public/`
+- Create your ico filename `favicon.ico` then upload to path `/root/explorer/public/`
 
 - Upload your logo to [imgur](https://imgur.com/), then create your online image link, example `https://i.imgur.com/pBRmmiE.jpg`
 - Open `/root/explorer/src/@core/layouts/components/Logo.vue` to fill your online image link, then Logo of Main Dashboard will be changed
