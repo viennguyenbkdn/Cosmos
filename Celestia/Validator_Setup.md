@@ -137,7 +137,6 @@ celestia-appd tx staking create-validator \
 --pubkey=$(celestia-appd tendermint show-validator) \
 --moniker="YOUR_MONIKER_NAME" \
 --identity="YOUR_KEYBASE_ID" \
---details="The truth is out there.." \
 --website="YOUR_WEBSITE_URL"
 --chain-id=mocha \
 --commission-rate=0.10 \
