@@ -1,4 +1,3 @@
-## 1. INSTALLATION MANUAL
 ### Set your moniker name
 ```
 NODENAME="YOUR_NODE_MONIKER"
