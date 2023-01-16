@@ -118,3 +118,37 @@ sudo systemctl start celestia-appd
 ```
 sudo journalctl -u celestia-appd -f -o cat
 ```
+
+### Create wallet then write down ur seedphrase
+- Create wallet 
+```
+celestia-appd keys add $CELESTIA_WALLET --keyring-backend test
+```
+- Go to discord of Celestia to get faucet: [Celestia discord](https://discord.gg/celestiacommunity)
+
+### Check synchronization status and make sure ur node get fully sync
+```
+celestia-appd status 2>&1 | jq .SyncInfo
+```
+
+### Create validator
+```
+celestia-appd tx staking create-validator \
+--amount=1000000utia \
+--pubkey=$(celestia-appd tendermint show-validator) \
+--moniker="YOUR_MONIKER_NAME" \
+--identity="YOUR_KEYBASE_ID" \
+--details="The truth is out there.." \
+--website="YOUR_WEBSITE_URL"
+--chain-id=mocha \
+--commission-rate=0.10 \
+--commission-max-rate=0.20 \
+--commission-max-change-rate=0.01 \
+--min-self-delegation=1 \
+--from= $WALLET
+--gas-prices=0.1utia \
+--gas-adjustment=1.5 \
+--gas=auto \
+--fees=5000utia \
+-y
+```
