@@ -65,3 +65,15 @@ LimitNOFILE=65535
 WantedBy=multi-user.target
 EOF
 ```
+
+### Start Celestia DA full node
+```
+sudo systemctl daemon-reload
+sudo systemctl enable celestia-full
+sudo systemctl restart celestia-full
+```
+
+### Check logs
+```
+sudo journalctl -u celestia-full -f -o cat
+```
