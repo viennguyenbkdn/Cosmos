@@ -56,7 +56,7 @@ After=network-online.target
 
 [Service]
 User=$USER
-ExecStart=$(which celestia) full start --core.ip https://rpc-mocha.pops.one  --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --keyring.accname ${CEL_WALLET} --metrics.tls=false --metrics --metrics.endpoint otel.celestia.tools:4318
+ExecStart=$(which celestia) full start --core.ip https://rpc-blockspacerace.pops.one --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --keyring.accname ${CEL_WALLET} --metrics.tls=false --metrics --metrics.endpoint otel.celestia.tools:4318
 Restart=on-failure
 RestartSec=3
 LimitNOFILE=65535
@@ -65,28 +65,3 @@ LimitNOFILE=65535
 WantedBy=multi-user.target
 EOF
 ```
-
-
-==============================================================================================================
-
-cd ~/celestia-node
-CEL_WALLET=TEN-VI
-CEL_CHAINNAME=TEN-CHAIN
-./cel-key add $CEL_WALLET --keyring-backend test --node.type light --p2p.network $CEL_CHAINNAME --recover
-
-
-sudo tee /etc/systemd/system/celestia-light.service > /dev/null <<EOF
-[Unit]
-Description=celestia light
-After=network-online.target
-
-[Service]
-User=$USER
-ExecStart=$(which celestia) light start --core.ip https://rpc-mocha.pops.one --keyring.accname ${CEL_WALLET}
-Restart=on-failure
-RestartSec=3
-LimitNOFILE=65535
-
-[Install]
-WantedBy=multi-user.target
-EOF
