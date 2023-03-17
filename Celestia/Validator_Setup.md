@@ -106,12 +106,12 @@ sed -i.bak -e "s%^address = \"tcp://0.0.0.0:1317\"%address = \"tcp://0.0.0.0:${C
 
 ### Download Snapshot
 ```
-curl -L https://onepiece-cosmos-explorer.xyz/snapshot/celestia/mocha_latest.tar.lz4 | lz4 -dc - | tar -xf - -C $HOME/.celestia-app
+curl -L https://onepiece-cosmos-explorer.xyz/snapshot/celestia/blockspacerace-0_latest.tar.lz4 | lz4 -dc - | tar -xf - -C $HOME/.celestia-app
 ```
 
 ### Start service
 ```
-sudo systemctl start celestia-appd
+sudo systemctl restart celestia-appd
 ```
 
 ### Check logs
@@ -131,7 +131,7 @@ celestia-appd keys add $CELESTIA_WALLET --keyring-backend test
 celestia-appd status 2>&1 | jq .SyncInfo
 ```
 
-### Create validator
+### Create validator 
 ```
 celestia-appd tx staking create-validator \
 --amount=1000000utia \
@@ -139,12 +139,12 @@ celestia-appd tx staking create-validator \
 --moniker="YOUR_MONIKER_NAME" \
 --identity="YOUR_KEYBASE_ID" \
 --website="YOUR_WEBSITE_URL"
---chain-id=mocha \
+--chain-id=$CELESTIA_CHAIN_ID \
 --commission-rate=0.10 \
 --commission-max-rate=0.20 \
 --commission-max-change-rate=0.01 \
 --min-self-delegation=1 \
---from= $WALLET
+--from= $CELESTIA_WALLET
 --gas-prices=0.1utia \
 --gas-adjustment=1.5 \
 --gas=auto \
