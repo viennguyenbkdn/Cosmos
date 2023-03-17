@@ -66,7 +66,7 @@ WantedBy=multi-user.target
 EOF
 ```
 
-### Start Celestia DA full node
+### Start Celestia DA light node
 ```
 sudo systemctl daemon-reload
 sudo systemctl enable celestia-light
