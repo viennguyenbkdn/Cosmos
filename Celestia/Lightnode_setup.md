@@ -45,6 +45,9 @@ CEL_CHAINNAME=blockspacerace
 ./cel-key list --node.type light --keyring-backend test --p2p.network $CEL_CHAINNAME
 
 celestia light init --p2p.network $CEL_CHAINNAME
+
+# Enable gateway
+sed -i.bak -e "s/Enabled = .*/Enabled = true/" .celestia-full-blockspacerace/config.toml
 ```
 
 ### Create service
@@ -56,7 +59,7 @@ After=network-online.target
 
 [Service]
 User=$USER
-ExecStart=$(which celestia) light start --core.ip https://rpc-blockspacerace.pops.one --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --keyring.accname ${CEL_WALLET} --metrics.tls=false --metrics --metrics.endpoint otel.celestia.tools:4318
+ExecStart=$(which celestia) light start --core.ip https://rpc-blockspacerace.pops.one --gateway --gateway.addr 0.0.0.0 --gateway.port 26659 --keyring.accname ${CEL_WALLET} --metrics.tls=false --metrics --metrics.endpoint otel.celestia.tools:4318
 Restart=on-failure
 RestartSec=3
 LimitNOFILE=65535
