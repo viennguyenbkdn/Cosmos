@@ -56,7 +56,7 @@ After=network-online.target
 
 [Service]
 User=$USER
-ExecStart=$(which celestia) full start --core.ip https://rpc-blockspacerace.pops.one --gateway --gateway.addr 127.0.0.1 --gateway.port 26659 --keyring.accname ${CEL_WALLET} --metrics.tls=false --metrics --metrics.endpoint otel.celestia.tools:4318
+ExecStart=$(which celestia) full start --core.ip https://rpc-blockspacerace.pops.one --gateway --gateway.addr 0.0.0.0 --gateway.port 26659 --keyring.accname ${CEL_WALLET} --metrics.tls=false --metrics --metrics.endpoint otel.celestia.tools:4318
 Restart=on-failure
 RestartSec=3
 LimitNOFILE=65535
