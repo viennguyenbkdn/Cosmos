@@ -45,6 +45,9 @@ CEL_CHAINNAME=blockspacerace
 ./cel-key list --node.type full --keyring-backend test --p2p.network $CEL_CHAINNAME
 
 celestia full init --p2p.network $CEL_CHAINNAME
+
+# Enable gateway
+sed -i.bak -e "s/Enabled = .*/Enabled = true/" .celestia-full-blockspacerace/config.toml
 ```
 
 ### Create service
