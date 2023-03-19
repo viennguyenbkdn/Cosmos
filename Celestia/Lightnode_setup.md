@@ -32,19 +32,27 @@ make cel-key
 ### Create new wallet or restore ur wallet 
 ```
 cd ~/celestia-node
-CEL_WALLET=YOUR-WALLET-NAME
-CEL_CHAINNAME=blockspacerace 
+echo "export CEL_WALLET=YOUR-WALLET-NAME" >> $HOME/.bash_profile
+echo "export CEL_CHAINNAME=blockspacerace" >> $HOME/.bash_profile
+echo "export CEL_NODETYPE=light" >> $HOME/.bash_profile
+source $HOME/.bash_profile
 
 # Create new wallet (Remember to write down seed phrases)
-./cel-key add $CEL_WALLET --keyring-backend test --node.type light --p2p.network $CEL_CHAINNAME
+./cel-key add $CEL_WALLET --keyring-backend test --node.type $CEL_NODETYPE --p2p.network $CEL_CHAINNAME
 
 # Recover ur wallet with your seed phrase (optional)
-./cel-key add $CEL_WALLET --keyring-backend test --node.type light --p2p.network $CEL_CHAINNAME --recover
+./cel-key add $CEL_WALLET --keyring-backend test --node.type $CEL_NODETYPE --p2p.network $CEL_CHAINNAME --recover
 
 # List created wallet
-./cel-key list --node.type light --keyring-backend test --p2p.network $CEL_CHAINNAME
+./cel-key list --node.type $CEL_NODETYPE --keyring-backend test --p2p.network $CEL_CHAINNAME
 
-celestia light init --p2p.network $CEL_CHAINNAME
+# Save wallet address 
+echo "export CEL_WALLET_ADDR=$(./cel-key show $CEL_WALLET -a --node.type $CEL_NODETYPE --keyring-backend test --p2p.network $CEL_CHAINNAME)" >> $HOME/.bash_profile
+source $HOME/.bash_profile
+echo $CEL_WALLET_ADDR
+
+# Initialize pre-configuration of your node
+celestia $CEL_NODETYPE init --p2p.network $CEL_CHAINNAME
 
 # Enable gateway
 sed -i.bak -e "s/Enabled = .*/Enabled = true/" $HOME/.celestia-light-blockspacerace/config.toml
@@ -59,7 +67,7 @@ After=network-online.target
 
 [Service]
 User=$USER
-ExecStart=$(which celestia) light start --core.ip https://rpc-blockspacerace.pops.one --gateway --gateway.addr 0.0.0.0 --gateway.port 26659 --keyring.accname ${CEL_WALLET} --metrics.tls=false --metrics --metrics.endpoint otel.celestia.tools:4318
+ExecStart=$(which celestia) light start --core.ip https://rpc-blockspacerace.pops.one --gateway --gateway.addr 0.0.0.0 --gateway.port 26659 --keyring.accname ${CEL_WALLET} --p2p.network ${CEL_CHAINNAME} --metrics.tls=false --metrics --metrics.endpoint otel.celestia.tools:4318
 Restart=on-failure
 RestartSec=3
 LimitNOFILE=65535
