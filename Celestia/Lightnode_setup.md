@@ -47,7 +47,7 @@ CEL_CHAINNAME=blockspacerace
 celestia light init --p2p.network $CEL_CHAINNAME
 
 # Enable gateway
-sed -i.bak -e "s/Enabled = .*/Enabled = true/" $HOME/.celestia-full-blockspacerace/config.toml
+sed -i.bak -e "s/Enabled = .*/Enabled = true/" $HOME/.celestia-light-blockspacerace/config.toml
 ```
 
 ### Create service
