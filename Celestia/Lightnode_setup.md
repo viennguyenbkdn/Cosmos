@@ -55,7 +55,7 @@ echo $CEL_WALLET_ADDR
 celestia $CEL_NODETYPE init --p2p.network $CEL_CHAINNAME
 
 # Enable gateway
-sed -i.bak -e "s/Enabled = .*/Enabled = true/" $HOME/.celestia-light-blockspacerace/config.toml
+sed -i.bak -e "s/Enabled = .*/Enabled = true/" $HOME/.celestia-light-blockspacerace-0/config.toml
 ```
 
 ### Create service
