@@ -47,7 +47,7 @@ source $HOME/.bash_profile
 ./cel-key list --node.type $CEL_NODETYPE --keyring-backend test --p2p.network $CEL_CHAINNAME
 
 # Save wallet address 
-echo "export CEL_WALLET_ADDR=$(./cel-key show $CEL_WALLET -a --node.type $CEL_NODETYPE --keyring-backend test --p2p.network $CEL_CHAINNAME)" >> $HOME/.bash_profile
+echo "export CEL_WALLET_ADDR=$(./cel-key show $CEL_WALLET -a --node.type $CEL_NODETYPE --keyring-backend test --p2p.network $CEL_CHAINNAME | grep -e "^celestia")" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 echo $CEL_WALLET_ADDR
 
