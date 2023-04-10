@@ -100,3 +100,10 @@ echo $DA_BLOCK_HEIGHT
 # start a sequencer of rollkit chain
 nibid start --rollkit.aggregator true --rollkit.block_time 2.35s --rollkit.da_block_time 2.35s --rollkit.da_layer celestia --rollkit.da_config='{"base_url":"$DA_URL","timeout":60000000000,"fee":100,"gas_limit":100000}' --rollkit.namespace_id $NAMESPACE_ID  --rollkit.da_start_height $DA_BLOCK_HEIGHT --p2p.laddr "0.0.0.0:26656" --p2p.seed_mode --log_level debug
 ```
+
+## 5. Result
+- Your rollup chain will run and publish block to Celestia DA layer
+![image](https://user-images.githubusercontent.com/91453629/230812555-d6e74939-0c03-4615-b9c2-8df3ba589cc7.png)
+
+- More PFB transaction will be submitted from your rollup chain to DA layer via DA node
+![image](https://user-images.githubusercontent.com/91453629/230812670-3aff055e-e9bf-482c-b01e-1557cf622966.png)
