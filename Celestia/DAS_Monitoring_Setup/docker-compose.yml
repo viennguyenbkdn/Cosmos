@@ -1,0 +1,82 @@
+version: "3.8"
+
+# Override any defaults specified by `${FOO:-bar}` in `.env` with `FOO=qux`.
+# ${VARIABLE:-default} evaluates to default if VARIABLE is unset or empty in the environment.
+# ${VARIABLE-default} evaluates to default only if VARIABLE is unset in the environment.
+
+services:
+  #                        _ _             _
+  #  _ __ ___   ___  _ __ (_) |_ ___  _ __(_)_ __   __ _
+  # | '_ ` _ \ / _ \| '_ \| | __/ _ \| '__| | '_ \ / _` |
+  # | | | | | | (_) | | | | | || (_) | |  | | | | | (_| |
+  # |_| |_| |_|\___/|_| |_|_|\__\___/|_|  |_|_| |_|\__, |
+  #                                                |___/
+
+  prometheus:
+    image: prom/prometheus:latest
+    ports:
+      - ${PORT_PROMETHEUS:-9090}:9090
+    networks: [danode]
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./data/prometheus:/prometheus
+    restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - ${PORT_GRAFANA:-3000}:3000
+    networks: [danode]        
+    volumes:
+      - ./grafana/datasource.yml:/etc/grafana/provisioning/datasources/datasource.yml
+      - ./grafana/dashboards.yml:/etc/grafana/provisioning/dashboards/datasource.yml
+      - ./grafana/grafana.ini:/etc/grafana/grafana.ini:ro
+      - ./grafana/dashboards:/etc/dashboards
+      - ./data/grafana:/var/lib/grafana
+    restart: unless-stopped
+ 
+  da_exporter:
+    image: ricoberger/script_exporter:main
+    ports:
+      - ${PORT_DA_EXPORTER:-9469}:9469
+    networks: [danode]        
+    volumes:
+      - ./da_exporter/script/config.yaml:/script/config.yaml
+      - ./da_exporter/script/celestia_node.sh:/script/celestia_node.sh
+      - ./data/da_exporter:/da_exporter
+    environment:
+      - HOST_IP=${HOST_IP}
+      - NODE_AUTH_TOKEN=${NODE_AUTH_TOKEN}
+      - NODE_ID=${NODE_ID}
+    command: ["-config.file", "/script/config.yaml"]
+    restart: unless-stopped
+
+  otel-collector:
+    image: otel/opentelemetry-collector
+    ports:
+      - ${PORT_OTEL_PPROF:-1888}:1888 # pprof extension
+      - ${PORT_OTEL_PROMETHEUS_EXPOSE:-8888}:8888 # Prometheus metrics exposed by the collector
+      - ${PORT_OTEL_PROMETHEUS:-8889}:8889 # Prometheus exporter metrics
+      - ${PORT_OTEL_HEALTHCHECK:-13133}:13133 # health_check extension
+      - ${PORT_OTEL_OTLP_GRPC:-4317}:4317 # OTLP gRPC receiver
+      - ${PORT_OTEL_OTLP_HTTP:-4318}:4318 # OTLP http receiver
+      - ${PORT_OTEL_ZPAGES:-55679}:55679 # zpages extension
+    networks: [danode]    
+    volumes:
+      - ./otelcol/config.yaml:/etc/otelcol/config.yaml
+    command: 
+      - --config=/etc/otelcol/config.yaml
+    restart: unless-stopped
+
+  node-exporter:
+    image: bitnami/node-exporter:latest
+    ports:
+      - ${PORT_NODE_EXPORTER:-9100}:9100
+    networks: [danode]        
+    volumes:
+      - ./data/node_exporter:/node_exporter
+    restart: unless-stopped
+
+networks:
+  danode:
+    
