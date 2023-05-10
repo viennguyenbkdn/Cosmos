@@ -31,7 +31,7 @@ git clone https://github.com/celestiaorg/celestia-app.git
 cd celestia-app
 # APP_VERSION=$(curl -s https://api.github.com/repos/celestiaorg/celestia-app/releases/latest | jq -r ".tag_name")
 # git checkout tags/$APP_VERSION -b $APP_VERSION
-git checkout v0.12.1
+git checkout v0.13.0
 make install
 ```
 
