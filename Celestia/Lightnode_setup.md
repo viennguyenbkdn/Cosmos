@@ -6,7 +6,7 @@ sudo apt install -y curl build-essential git wget jq make gcc tmux chrony lz4 un
 
 ### Install Go
 ```
-ver="1.19.5"
+ver="1.20.3"
 cd $HOME
 wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
 sudo rm -rf /usr/local/go
@@ -23,7 +23,7 @@ cd $HOME
 rm -rf celestia-node 
 git clone https://github.com/celestiaorg/celestia-node.git 
 cd celestia-node/ 
-git checkout tags/v0.8.1
+git checkout tags/v0.9.3
 make build 
 make install 
 make cel-key 
